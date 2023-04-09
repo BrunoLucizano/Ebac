@@ -91,22 +91,34 @@ int consulta()//função responsável pela consulta
 
 int excluir()//função responsável por excluir cadastro
 {
-	char cpf[40];//variável
+	char cpf[40];
 	
-	printf("Digite o CPF a ser excluído: ");//coletando informações
-	scanf("%s",cpf);//refere-se a string
+	printf("Digite o CPF do usuário a ser deletado: ");
+	scanf("%s",cpf);
+		
+		
 	
-	remove(cpf);//excluindo
+	FILE *file;	
+	file = fopen(cpf,"r");
 	
-	FILE *file;//lê o arquivo
-	file = fopen(cpf,"r");//lê o arquivo
-	
-	if(file == NULL)//condicional
+	if(file == NULL)
 	{
-	printf("\n\nUsuário não se encontra no sistema\n\n");//retorno do sistema
-	system("pause");//pausa o sistema
+		printf("O usuário não se encontra no sistema!.\n");
+		system("pause");
 	}
-	
+	else
+	{
+		fclose(file);
+		remove(cpf);
+		FILE *file;	
+		file = fopen(cpf,"r");
+		if(file == NULL)
+		{
+			printf("Usuário deletado com sucesso!.\n");
+			system("pause");
+		}
+	}
+	fclose(file);
 	
 }
 
