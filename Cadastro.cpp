@@ -83,6 +83,7 @@ int consulta()//função responsável pela consulta
 	printf("\nEssas são as informações do usuário: ");//retorno
 	printf("%s", conteudo);//informações
 	printf("\n\n");
+	fclose(file);
 	}
 
 	system("pause");//pausa no sistema
